@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		input[type=text],
+		select {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+	
+		input[type=submit] {
+			width: 100%;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+	
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+	
+		div {
+			border-radius: 5px;
+			background-color: #f2f2f2;
+			padding: 20px;
+		}
+	</style>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Formulari valoració Presentació</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; text-align: center; background-color: black; color: green;">
+	<h1>Valoració del tutorial</h1><hr> <br>
+	<!-- Inici del formulari:
+		action - indica el fitxer que hauria de processar la informació. Si aquestprototip fos real, caldría un servidor intermediari.
+		get - indica que les dades son visibles a la url quan fem l'enviament. (CAL TINDRE CURA AMB DADES SENSIBLES)
+	-->
+	<form action="processa.html" method="get" autocomplete="on" target="_blank"> <!-- Fitxer al que reenviem les dades per a la seva mostra i métode -->
+		
+		<fieldset>
+			<legend style="font-weight: bold;">Dades personals</legend>
+			<div> <!-- Soc conscient de que hi ha mil opcións per evitar la dividitis, peró al ser un exercici de formularis, em simplificaré al màxim -->
+				<label for="nom">Nom:</label> 
+				<input type="text" name="nom" id="nom" maxlength="20" size="20" required />
+			</div>
+			<div>
+				<label for="cognoms">Cognoms:</label> 
+				<input type="text" name="cognoms" id="cognoms" maxlength="40" size="40" required />
+			</div>
+			<div>
+				<label for="contrasenya">Contrasenya:</label> 
+				<input type="password" name="contrasenya" id="contrasenya" maxlength="20" size="20" required />
+			</div>
+			<div>
+				<label for="continent">Continent:</label> 
+				<select name="continent" id="continent" required>
+					<option value="af">Europa</option>
+					<option value="am">Àsia</option>
+					<option value="as">Àsia</option>
+					<option value="eu">Europa</option>
+					<option value="oc">Oceania</option>
+				</select>
+			</div>	
+			<div>
+				<label for="data">Data:</label>
+				<input type="date" id="data" name="data" required>
+			</div>
+		</fieldset> <br> <br>
+		<fieldset>
+			<legend style="font-weight: bold;">Opinió</legend>
+			<div>
+				<p>Què t'ha semblat el tutorial?</p>
+				<div>
+					<input type="radio" name="valoracio" id="Correcte" value="Correcte" checked="checked" />
+					<label for="Correcte">Correcte</label>
+				</div>
+				<div>
+					<input type="radio" name="valoracio" id="Suficient" value="Suficient" />
+					<label for="Suficient">Suficient</label>
+				</div>
+				<div>
+					<input type="radio" name="Insuficient" id="Insuficient" value="Insuficient" />
+					<label for="Insuficient">Insuficient</label>
+				</div>
+				<p>Alternativament pots donar una valoració més exacta lliscant aquest slider:</p>
+				<div>
+					<label for="Nota">Puntúa de 0 a 10:</label>
+					<input type="range" list="tickmarks" step="10" name="nota" id="nota" value="nota" />
+					<datalist id="tickmarks">
+						<option value="0"></option>
+						<option value="10"></option>
+						<option value="20"></option>
+						<option value="30"></option>
+						<option value="40"></option>
+						<option value="50"></option>
+						<option value="60"></option>
+						<option value="70"></option>
+						<option value="80"></option>
+						<option value="90"></option>
+						<option value="100"></option>
+					</datalist>
+					<p>Valor seleccionat: <span id="value"></span></p>
+				</div>
+
+				<script>
+					var slider = document.getElementById("nota");
+					var output = document.getElementById("value");
+					output.innerHTML = slider.value;
+
+					slider.oninput = function () {
+						output.innerHTML = this.value;
+					}
+				</script>
+				
+			<div>
+				<p>Quines seccions del tutorial t'han agradat més?</p>
+				<div>
+					<input type="checkbox" name="seccio1" id="seccio1" value="si" />
+					<label for="seccio1">Secció 1</label>
+				</div>
+				<div>
+					<input type="checkbox" name="seccio2" id="seccio2" value="si" />
+					<label for="seccio2">Secció 2</label>
+				</div>
+				<div>
+					<input type="checkbox" name="seccio3" id="seccio3" value="si" />
+					<label for="seccio3">Secció 3</label>
+				</div>
+			</div>			
+		</fieldset>	
+		
+		<div>
+			<input type="reset" value="Esborra les dades" />
+			<input type="submit" value="Envia les dades" />
+		</div>
+	
+	</form> <!-- Acaba el formulari -->
+
+</body>
+</html>
